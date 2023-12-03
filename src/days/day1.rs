@@ -1,5 +1,6 @@
 use std::io::BufRead;
-use std::{fs::File, io::BufReader};
+
+use crate::days::open_file;
 
 const DIGITS: [(&str, u32); 9] = [
     ("one", 1),
@@ -14,8 +15,7 @@ const DIGITS: [(&str, u32); 9] = [
 ];
 
 pub fn run() {
-    let file = File::open("input/day1.txt").expect("Failed to open input");
-    let reader = BufReader::new(file);
+    let reader = open_file("input/day1.txt");
 
     let mut ans = 0 as i64;
 
@@ -32,7 +32,6 @@ pub fn run() {
         }
 
         let num = nums.first().unwrap() * 10 + nums.last().unwrap();
-        println!("{}", num);
         ans += num as i64;
     }
 
